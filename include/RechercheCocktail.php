@@ -2,7 +2,6 @@
 
 <?php
 include 'Donnees.inc.php';
-print_r($GLOBALS["Recettes"][0]['index'][0]);
 ?>
 
 <html>
@@ -15,6 +14,19 @@ print_r($GLOBALS["Recettes"][0]['index'][0]);
     <a href="ListeCocktails.php">Liste des cocktails</a>
     <a href="RechercheCocktail.php">Rechercher un cocktail</a>
     <a href="Connexion.php">Connexion</a>
+
+
+    <?php
+    foreach($Recettes as $Hier=>$Categorie)
+    if (array_search('Coca-cola',$Categorie) != FALSE)
+    {
+        echo $Hier;
+    }
+    /*
+    <select name="prenom" size="1">
+     <option value="1">Pierre</option> 
+    </select>
+    */ ?>
     </p>
     </body>
 </html>

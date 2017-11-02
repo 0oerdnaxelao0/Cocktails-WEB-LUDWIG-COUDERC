@@ -9,13 +9,26 @@
 		{ 
 			//titre
 			echo '<h1>'.$Recettes[$_GET['indice']]['titre'].'</h1>'; 
-
+		
+		
 			//image
 			$nom = preg_split("/[ ]+/",$Recettes[$_GET['indice']]['titre']);
+		
 			if (sizeof($nom) == 1)
-				echo '<img src = "../images/'.$nom[0].'.jpg" alt="'.$nom[0].'"';
+			{
+				$file = utf8_decode("../images/'.$nom[0].'.jpg");
+				echo $file;
+				echo '<img src = '.$file.'"
+				alt="'.$nom[0].'" width = "150" height="260" />
+				';
+			}
 			else
-				echo '<img src = "../images/'.$nom[0].'_'.$nom[1].'.jpg" alt="'.$nom[0].'"';
+			{
+				$file = fopen(utf8_decode("../images/'".$nom[0].'"_'.$nom[1].'.jpg"'),"r");
+				echo '<img src = '.$file.'"
+				alt="'.$nom[0].'" width = "150" height="260" />
+				';
+			}
 			//ingrédients
 			echo '<h3> Ingrédients : </h3>';
 			$ingredients = preg_split("/[|]+/",$Recettes[$_GET['indice']]['ingredients']);
@@ -25,10 +38,10 @@
 				echo '<li>'.$ingredient.'</li>';
 			}
 			echo '</ul>';
-
+		
 			//preparation
 			echo '<h3> Préparation : </h3>';
-
+		
 			$etapes = preg_split("/[.]+/",$Recettes[$_GET['indice']]['preparation']);
 			echo '<ul>';
 			foreach($etapes as $etape)
@@ -37,7 +50,7 @@
 				echo '<li>'.$etape.'</li>';
 			}
 			echo '</ul>';
-		} 	
+		} 
 		/*
 		if (isset($_GET['rubrique']))
 		{
