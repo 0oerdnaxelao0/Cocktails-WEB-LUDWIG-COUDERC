@@ -1,0 +1,103 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+	font-family: 'Great Vibes', cursive;
+	padding:0px;
+	margin:0px;
+	border:0px;}
+header {
+	background-color:rgb(159, 85, 30);
+	color:white;
+	padding:0;
+	margin:0;
+	height:200px;}
+header h1 {
+	padding:50px 0;
+	text-align:center;
+	margin:auto;
+	font-size:6em;}
+header a{
+	color:white;
+	background-color:rgb(159, 85, 30);
+	text-decoration:none;}
+nav {
+	text-align:center;
+	background-color:rgb(159, 85, 30);
+	float:top;
+	margin-top:10px;
+	height:33%;
+	clear:both;}
+nav ul {
+	padding:0px;
+	margin:0px;
+	border:0px;
+	font-size:2.5em;
+	display:block;}
+nav ul li {
+	display:inline;
+	padding:0;
+	margin:0;}
+nav a {
+	text-decoration:none;
+	color:white;
+	border-bottom:0;}
+nav a:hover {
+	background-color:white;
+	color:rgb(159, 85, 30);
+	text-decoration:none;
+	border:0;
+	margin:0;
+	padding:0;
+	border-top:1px solid white;
+	border-bottom:1px solid white;}
+main {
+	background-color:#ffffff;
+	margin:auto;
+	width:974px;}
+p {
+	font-family:amaranth, sans-serif;
+}
+p a {
+	text-decoration: none;
+	color:rgb(159, 85, 30);}
+p a:hover {
+	text-decoration:none;
+	background-color:rgb(159, 85, 30);
+	color:white;}
+#Err {
+	text-align:center;
+}
+h3 {
+	text-align:center;
+	font-size:2.2em;
+}
+h4 {
+	font-size:1.4em;
+	font-weight:600;
+	text-align: right;}
+h5 {
+	font-size:1.4em;
+}
+main #nonGras li{
+	font-size:1em;
+	font-weight:400;}
+main li {
+	font-family:amaranth, sans-serif;
+}
+hr {
+	width:284px;}
+main table{
+	margin:auto;
+	border-collapse:collapse;}
+h4 a {
+	text-decoration: none;
+	color:rgb(159, 85, 30);}
+h4 a:hover {
+	text-decoration:none;
+	background-color:rgb(159, 85, 30);
+	color:white;}
+.ok {
+    }
+.error
+    {  
+	background-color: red;}
