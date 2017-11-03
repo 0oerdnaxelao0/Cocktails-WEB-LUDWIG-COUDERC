@@ -15,12 +15,24 @@ include 'Donnees.inc.php';
     <a href="RechercheCocktail.php">Rechercher un cocktail</a>
     <a href="Connexion.php">Connexion</a>
 
-
     <?php
-    foreach($Recettes as $Hier=>$Categorie)
-    if (array_search('Coca-cola',$Categorie) != FALSE)
+	function fois2($valeur) 	// definition de la
+	{			// fonction
+        return (2*$valeur); 
+	}
+    ?>
+
+
+
+    
+    <?php
+    foreach($Recettes as $Recette=>$Cocktail)
     {
-        echo $Hier;
+    if (array_search('Aliment',$Cocktail['index']) != FALSE)
+    {
+       echo $Cocktail['titre'];
+       echo '</br>';
+    }
     }
     /*
     <select name="prenom" size="1">
