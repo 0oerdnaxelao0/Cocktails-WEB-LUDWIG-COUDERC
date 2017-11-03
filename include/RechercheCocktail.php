@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 
 <?php
-include 'Donnees.inc.php';
+include 'Fonctions.php';
 ?>
 
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Cocktails</title>
+        <title>Recherche Cocktails</title>
     </head>
     <body>
     <p>
@@ -15,30 +15,14 @@ include 'Donnees.inc.php';
     <a href="RechercheCocktail.php">Rechercher un cocktail</a>
     <a href="Connexion.php">Connexion</a>
 
-    <?php
-	function fois2($valeur) 	// definition de la
-	{			// fonction
-        return (2*$valeur); 
-	}
-    ?>
+    <?php RechercheCocktailParAliment('Fruit'); ?>
 
 
 
     
     <?php
-    foreach($Recettes as $Recette=>$Cocktail)
-    {
-    if (array_search('Aliment',$Cocktail['index']) != FALSE)
-    {
-       echo $Cocktail['titre'];
-       echo '</br>';
-    }
-    }
-    /*
-    <select name="prenom" size="1">
-     <option value="1">Pierre</option> 
-    </select>
-    */ ?>
+
+    ?>
     </p>
     </body>
 </html>

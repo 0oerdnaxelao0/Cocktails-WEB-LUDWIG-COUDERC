@@ -1,6 +1,15 @@
 <?php
     include 'Donnees.inc.php';
+
+    $ListeCocktails = array();
     
+    function AddToEnd($Element)
+    {
+        if (!(isset($ListeCocktails[$Element])))
+        {
+            $ListeCocktails[] = $Element;
+        }
+    }
     function AfficherTousCocktails()
         {
             $i = 0;
@@ -21,6 +30,7 @@
             {
                 if ($ingre == $aliment)
                 {
+                    
                     echo '<a href="index.php?p=Cocktail&indice='.$i.'">'.$infos['titre'].'</a>';
                     echo '</br>';
                 }
@@ -30,13 +40,14 @@
     }
     function RechercheCocktailParAliment($aliment)
     {
+        
         if ($aliment == 'Aliment') AfficherTousCocktails();
         else
         {
             AfficherCocktailParAliment($aliment);
-            if (array_search('sous-catégorie',$GLOBALS["Hierarchie"][$aliment])!=FALSE)
+            if ((isset($GLOBALS["Hierarchie"][$aliment]['sous-categorie']))!=FALSE)
             {
-                    foreach ($GLOBALS["Hierarchie"][$aliment]['sous-categorie'] as $sousalim)
+                    foreach ($GLOBALS["Hierarchie"][$aliment]['sous-categorie'] as $indice=>$sousalim)
                     {
                         RechercheCocktailParAliment($sousalim);
                     }
