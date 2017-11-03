@@ -5,6 +5,7 @@
 	<body>
 		<h1>Accueil</h1>
 		<?php
+			include("Fonctions.php");
 			AfficherTousCocktails();
 		?>
 	</body>
