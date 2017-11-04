@@ -17,11 +17,21 @@
 
     <?php 
     $ListeCock = Array();
-        RechercheCocktailParAliment('Fruit',$ListeCock); 
-        foreach($ListeCock as $cocktail=>$indice)
+        CreerListeTemp('Fruit',$ListeCock); 
+        print_r($ListeCock);
+        foreach($GLOBALS["Recettes"] as $indice=>$cocktail)
         {
-            echo $indice['titre'];
-            echo '</br>';
+            foreach($cocktail['index'] as $indexIngre => $ingre)
+            {
+                if (in_array($ingre,$ListeCock))
+                    {
+                        echo $cocktail['titre'];
+                        echo '</br>';
+                        echo $cocktail['ingredients'];
+                        echo '</br>';
+                        break;
+                    }
+            }
         }
         
     ?>

@@ -78,4 +78,20 @@
         else
         RechercheAlimentv2($GLOBALS["Hierarchie"][$ingredient]['sous-categorie']);
     }
+
+    function CreerListeTemp($ingre, &$ListeTemp)
+    {
+        if (!(in_array($ingre,$ListeTemp)))
+        AddToEnd($ingre, $ListeTemp);
+        //AddToEnd("titi", $ListeTemp);
+        if (isset($GLOBALS["Hierarchie"][$ingre]['sous-categorie'])!=FALSE)
+        //if(in_array('sous-categorie',$GLOBALS["Hierarchie"][$ingre]))
+        {
+           // AddToEnd("toto", $ListeTemp);
+            foreach ($GLOBALS["Hierarchie"][$ingre]['sous-categorie'] as $sousens=>$indice)
+            {
+                CreerListeTemp($indice, $ListeTemp);
+            }
+        }
+    }
 ?>
