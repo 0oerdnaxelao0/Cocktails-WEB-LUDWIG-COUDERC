@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <?php
-include 'Fonctions.php';
+    include 'Fonctions.php';
 ?>
 
 <html>
@@ -15,7 +15,16 @@ include 'Fonctions.php';
     <a href="RechercheCocktail.php">Rechercher un cocktail</a>
     <a href="Connexion.php">Connexion</a>
 
-    <?php RechercheCocktailParAliment('Fruit'); ?>
+    <?php 
+    $ListeCock = Array();
+        RechercheCocktailParAliment('Fruit',$ListeCock); 
+        foreach($ListeCock as $cocktail=>$indice)
+        {
+            echo $indice['titre'];
+            echo '</br>';
+        }
+        
+    ?>
 
 
 
