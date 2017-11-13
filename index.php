@@ -14,7 +14,7 @@
 		<nav>
 			<ul>
 				<li><a href="index.php?p=ListeCocktails">Tous les Cocktails</a></li>
-				<li><a href="index.php?p=RechercheCocktail">Recherche</a></li>
+				<li><a href="index.php?p=RechercheCocktail&ingre=Aliment">Recherche</a></li>
 				<li><a href="index.php?p=Fav">Favoris</a></li>
 				<li><a href="index.php?p=Perso">Espace Perso.</a></li>
 			</ul>

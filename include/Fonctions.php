@@ -83,15 +83,40 @@
     {
         if (!(in_array($ingre,$ListeTemp)))
         AddToEnd($ingre, $ListeTemp);
-        //AddToEnd("titi", $ListeTemp);
         if (isset($GLOBALS["Hierarchie"][$ingre]['sous-categorie'])!=FALSE)
-        //if(in_array('sous-categorie',$GLOBALS["Hierarchie"][$ingre]))
         {
-           // AddToEnd("toto", $ListeTemp);
             foreach ($GLOBALS["Hierarchie"][$ingre]['sous-categorie'] as $sousens=>$indice)
             {
                 CreerListeTemp($indice, $ListeTemp);
             }
         }
+    }
+
+    function AfficherLiensSousCategorie($ingre)
+    {
+        if (isset($GLOBALS["Hierarchie"][$ingre]['sous-categorie'])!=FALSE)
+        {
+            echo 'SOUS-CATÉGORIES :';
+            echo '</br>';
+            echo '</br>';
+            foreach ($GLOBALS["Hierarchie"][$ingre]['sous-categorie'] as $sousens=>$indice)
+            {
+                echo '<a href="index.php?p=RechercheCocktail&ingre='.$indice.'">'.$indice.'</a>   ';
+            }
+            echo '</br>';
+        }
+    }
+
+    function ListeFathers($ingre, &$ListeTempF)
+    {
+        if (!(in_array($ingre,$ListeTempF))) 
+        AddToEnd($ingre, $ListeTempF);
+        if (isset($GLOBALS["Hierarchie"][$ingre]['super-categorie'])!=FALSE)
+        {
+             foreach ($GLOBALS["Hierarchie"][$ingre]['super-categorie'] as $surens=>$indice)
+                {
+                    ListeFathers($indice, $ListeTempF);
+                }
+        }  
     }
 ?>

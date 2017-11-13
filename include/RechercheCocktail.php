@@ -11,29 +11,55 @@
     </head>
     <body>
     <p>
-    <a href="ListeCocktails.php">Liste des cocktails</a>
-    <a href="RechercheCocktail.php">Rechercher un cocktail</a>
-    <a href="Connexion.php">Connexion</a>
 
     <?php 
-    $ListeCock = Array();
-        CreerListeTemp('Fruit',$ListeCock); 
-        print_r($ListeCock);
-        foreach($GLOBALS["Recettes"] as $indice=>$cocktail)
-        {
-            foreach($cocktail['index'] as $indexIngre => $ingre)
-            {
-                if (in_array($ingre,$ListeCock))
-                    {
-                        echo $cocktail['titre'];
-                        echo '</br>';
-                        echo $cocktail['ingredients'];
-                        echo '</br>';
-                        break;
-                    }
-            }
-        }
+    if(isset($_GET['ingre']))
+    {
         
+        $ListeFather = Array();
+        $ListeCockFils = Array();
+        
+        ListeFathers($_GET['ingre'], $ListeFather);
+        $ListeFatherReverse = array_reverse($ListeFather);
+
+            
+            
+            if ($_GET['ingre'] != 'Aliment')
+            {   
+                echo 'SUPER-CATÉGORIEs :';
+                echo '</br>';
+                echo '</br>';
+                foreach($ListeFatherReverse as $element)
+                {
+                    echo '<a href="index.php?p=RechercheCocktail&ingre='.$element.'">'.$element.' </a>   ';
+                    echo '< ';
+                }
+                echo '</br>';
+                echo '</br>';
+            }
+            AfficherLiensSousCategorie($_GET['ingre']);
+            echo '</br>';
+            echo '</br>';
+            CreerListeTemp($_GET['ingre'],$ListeCockFils);
+
+            $i=0;
+            foreach($GLOBALS["Recettes"] as $indice=>$cocktail)
+            {
+                
+                foreach($cocktail['index'] as $indexIngre => $ingre)
+                {
+                    if (in_array($ingre,$ListeCockFils))
+                        {
+                            echo '<a href="index.php?p=Cocktail&indice='.$i.'">'.$cocktail['titre'].'</a>';
+                            echo '</br>';
+                            break;
+                        }
+                        
+                }
+                $i++;
+            }
+    }    
+    
     ?>
 
 
