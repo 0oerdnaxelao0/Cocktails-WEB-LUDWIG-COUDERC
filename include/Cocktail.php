@@ -18,7 +18,7 @@
 			{
 				$file = utf8_decode("../images/'.$nom[0].'.jpg");
 				echo $file;
-				echo '<img src = '.$file.'"
+				echo '<img src = "'.$file.'"
 				alt="'.$nom[0].'" width = "150" height="260" />
 				';
 			}

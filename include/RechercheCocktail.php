@@ -26,13 +26,13 @@
             
             if ($_GET['ingre'] != 'Aliment')
             {   
-                echo 'SUPER-CATÉGORIEs :';
+                echo 'SUPER-CATÉGORIES :';
                 echo '</br>';
                 echo '</br>';
                 foreach($ListeFatherReverse as $element)
                 {
+					echo '> ';
                     echo '<a href="index.php?p=RechercheCocktail&ingre='.$element.'">'.$element.' </a>   ';
-                    echo '< ';
                 }
                 echo '</br>';
                 echo '</br>';
@@ -58,15 +58,7 @@
                 }
                 $i++;
             }
-    }    
-    
-    ?>
-
-
-
-    
-    <?php
-
+    }
     ?>
     </p>
     </body>
