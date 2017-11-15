@@ -26,13 +26,14 @@
             
             if ($_GET['ingre'] != 'Aliment')
             {   
-                echo 'SUPER-CATÉGORIEs :';
+                echo 'SUPER-CATÉGORIES :';
                 echo '</br>';
                 echo '</br>';
                 foreach($ListeFatherReverse as $element)
                 {
+                    if($element !='Aliment') echo '< ';
                     echo '<a href="index.php?p=RechercheCocktail&ingre='.$element.'">'.$element.' </a>   ';
-                    echo '< ';
+                    
                 }
                 echo '</br>';
                 echo '</br>';
@@ -43,6 +44,9 @@
             CreerListeTemp($_GET['ingre'],$ListeCockFils);
 
             $i=0;
+            echo 'LISTE DES COCKTAILS:';
+            echo '</br>';
+            echo '</br>';
             foreach($GLOBALS["Recettes"] as $indice=>$cocktail)
             {
                 

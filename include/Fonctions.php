@@ -1,18 +1,19 @@
 <?php
     include 'Donnees.inc.php';
 
-    $ListeCocktails=array();
     
     
-    
+    //ajoute un élément à la fin d'une liste, tout en vérifiant les doublons
     function AddToEnd($Element, &$Liste)
     {
-        //if (!(isset($GLOBALS["ListeCocktails"][$Element])))
-        if (!(isset($ListeCocktails[$Element])))
+        
+        if (!(isset($Liste[$Element])))
         {
             $Liste[] = $Element;
         }
     }
+
+    //affiche la liste de tous les cocktails, appellée à la page Liste des cocktails
     function AfficherTousCocktails()
         {
             $i = 0;
@@ -24,7 +25,8 @@
             }
         }
 
-    function AfficherCocktailParAliment($aliment, &$Liste)
+    //ajoute dans une liste les cocktails contenant l'ingrédient en paramètre
+    function AjouteCocktailParAliment($aliment, &$Liste)
     {
             
         foreach($GLOBALS["Recettes"] as $recette=>$infos)
@@ -34,8 +36,7 @@
                 if ($ingre == $aliment)
                 {
                     AddToEnd($GLOBALS["Recettes"][$i], $Liste);
-                    //echo '<a href="../index.php?p=Cocktail&indice='.$i.'">'.$infos['titre'].'</a>';
-                    //echo '</br>';
+                    
                     
                 }
                 
@@ -43,13 +44,14 @@
             $i++;
         } 
     }
+
+    //ajoute dans une liste les cocktails contenant l'ingrédient en paramètre et ses sous-catégories
     function RechercheCocktailParAliment($aliment, &$Liste)
     {
-        
         if ($aliment == 'Aliment') AfficherTousCocktails();
         else
         {
-            AfficherCocktailParAliment($aliment, $Liste);
+            AjouteCocktailParAliment($aliment, $Liste);
             if ((isset($GLOBALS["Hierarchie"][$aliment]['sous-categorie']))!=FALSE)
             {
                     foreach ($GLOBALS["Hierarchie"][$aliment]['sous-categorie'] as $indice=>$sousalim)
@@ -63,22 +65,7 @@
         
     }
 
-    function existe($aliment)
-    {
-        if(!($GLOBALS["Hierarchie"][$aliment]['sous-categorie']))
-        {
-            
-        }
-    }
-
-    function RechercheAlimentv2($ingredient)
-    {
-        if ((isset($GLOBALS["Hierarchie"][$ingredient]['sous-categorie']))==FALSE)
-        AddToEnd($GLOBALS["Hierarchie"][$ingredient]);
-        else
-        RechercheAlimentv2($GLOBALS["Hierarchie"][$ingredient]['sous-categorie']);
-    }
-
+    //Créer une liste contenant tous les cocktails contenant l'ingrédient en paramètre (sous-catégories comprises)
     function CreerListeTemp($ingre, &$ListeTemp)
     {
         if (!(in_array($ingre,$ListeTemp)))
@@ -92,6 +79,7 @@
         }
     }
 
+    //Utiliser dans la page de recherche de cocktail, affiche les sous catégories de l'ingrédient sélectionné sous forme de liens cliquables
     function AfficherLiensSousCategorie($ingre)
     {
         if (isset($GLOBALS["Hierarchie"][$ingre]['sous-categorie'])!=FALSE)
@@ -107,6 +95,7 @@
         }
     }
 
+    //Créer une liste contenant toutes les super-catégories de l'ingrédient en paramètre 
     function ListeFathers($ingre, &$ListeTempF)
     {
         if (!(in_array($ingre,$ListeTempF))) 
