@@ -10,59 +10,69 @@
         <title>Recherche Cocktails</title>
     </head>
     <body>
+		<form method="post" action="#" >
+				<input type="search" class="recherche" name="recherche" placeholder="Rechercher...?"/>
+				<input type="submit" name="submit" value="Valider"/>
+		</form>
     <p>
 
-    <?php 
-    if(isset($_GET['ingre']))
-    {
-        
-        $ListeFather = Array();
-        $ListeCockFils = Array();
-        
-        ListeFathers($_GET['ingre'], $ListeFather);
-        $ListeFatherReverse = array_reverse($ListeFather);
+    <?php
+		if (isset($_POST['recherche']))
+			$rech = ucwords(strtolower($_POST['recherche']));
+		else if (isset($_GET['ingre']))
+			$rech = $_GET['ingre'];
+		if($rech)
+			{
+				$ListeFather = Array();
+				$ListeCockFils = Array();
 
-            
-            
-            if ($_GET['ingre'] != 'Aliment')
-            {   
-                echo 'SUPER-CATÉGORIES :';
-                echo '</br>';
-                echo '</br>';
-                foreach($ListeFatherReverse as $element)
-                {
-                    if($element !='Aliment') echo '< ';
-                    echo '<a href="index.php?p=RechercheCocktail&ingre='.$element.'">'.$element.' </a>   ';
-                    
-                }
-                echo '</br>';
-                echo '</br>';
-            }
-            AfficherLiensSousCategorie($_GET['ingre']);
-            echo '</br>';
-            echo '</br>';
-            CreerListeTemp($_GET['ingre'],$ListeCockFils);
+				ListeFathers($rech, $ListeFather);
+				$ListeFatherReverse = array_reverse($ListeFather);
 
-            $i=0;
-            echo 'LISTE DES COCKTAILS:';
-            echo '</br>';
-            echo '</br>';
-            foreach($GLOBALS["Recettes"] as $indice=>$cocktail)
-            {
-                
-                foreach($cocktail['index'] as $indexIngre => $ingre)
-                {
-                    if (in_array($ingre,$ListeCockFils))
-                        {
-                            echo '<a href="index.php?p=Cocktail&indice='.$i.'">'.$cocktail['titre'].'</a>';
-                            echo '</br>';
-                            break;
-                        }
-                        
-                }
-                $i++;
-            }
-    }
+
+
+					if ($rech != 'Aliment')
+					{   
+						echo '<div id="cat">Super Catégories :</div>';
+						echo '</br>';
+						echo '</br>';
+						echo '<ul id="listCat">';
+						foreach($ListeFatherReverse as $element)
+						{
+							if($element !='Aliment')
+							echo '<li><a href="index.php?p=RechercheCocktail&ingre='.$element.'">'.$element.' </a></li>';
+
+						}
+						echo '</ul>';
+						echo '</br>';
+						echo '</br>';
+					}
+					AfficherLiensSousCategorie($rech);
+					echo '</br>';
+					echo '</br>';
+					CreerListeTemp($rech,$ListeCockFils);
+
+					$i=0;
+					echo '<div id="cat">Liste des Cocktails :</div>';
+					echo '</br>';
+					echo '</br>';
+					echo '<ul id="listCat">';
+					foreach($GLOBALS["Recettes"] as $indice=>$cocktail)
+					{
+
+						foreach($cocktail['index'] as $indexIngre => $ingre)
+						{
+							if (in_array($ingre,$ListeCockFils))
+								{
+									echo '<li><a href="index.php?p=Cocktail&indice='.$i.'">'.$cocktail['titre'].'</a></li>';
+									break;
+								}
+
+						}
+						$i++;
+					}
+					echo '</ul>';
+			}
     ?>
     </p>
     </body>

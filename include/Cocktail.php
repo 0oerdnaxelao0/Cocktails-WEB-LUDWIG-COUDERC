@@ -3,8 +3,16 @@
 	<head>
 	</head>
 	<body>
+		<div id="PageCocktail">
 	<?php
 		include 'Donnees.inc.php';
+			
+		$unwanted_array = array(    'Š'=>'S', 'š'=>'s', 'Ž'=>'Z', 'ž'=>'z', 'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E',
+                            'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I', 'Ï'=>'I', 'Ñ'=>'N', 'Ò'=>'O', 'Ó'=>'O', 'Ô'=>'O', 'Õ'=>'O', 'Ö'=>'O', 'Ø'=>'O', 'Ù'=>'U',
+                            'Ú'=>'U', 'Û'=>'U', 'Ü'=>'U', 'Ý'=>'Y', 'Þ'=>'B', 'ß'=>'Ss', 'à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a', 'å'=>'a', 'æ'=>'a', 'ç'=>'c',
+                            'è'=>'e', 'é'=>'e', 'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o', 'ô'=>'o', 'õ'=>'o',
+                            'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y' );
+		
 		if (isset($_GET['indice'])) 
 		{ 
 			//titre
@@ -12,21 +20,19 @@
 		
 		
 			//image
-			$nom = preg_split("/[ ]+/",$Recettes[$_GET['indice']]['titre']);
+			$nom = strtr($Recettes[$_GET['indice']]['titre'], $unwanted_array);
+			$nom = preg_split("/[ ]+/",$nom);
 		
 			if (sizeof($nom) == 1)
 			{
-				$file = utf8_decode("../images/'.$nom[0].'.jpg");
-				echo $file;
-				echo '<img src = "'.$file.'"
-				alt="'.$nom[0].'" width = "150" height="260" />
+				echo '<img src = "images/'.$nom[0].'.jpg"
+				alt="'.$nom[0].'" width = "250" height=300" />
 				';
 			}
 			else
 			{
-				$file = fopen(utf8_decode("../images/'".$nom[0].'"_'.$nom[1].'.jpg"'),"r");
-				echo '<img src = '.$file.'"
-				alt="'.$nom[0].'" width = "150" height="260" />
+				echo '<img src ="images/'.$nom[0].'_'.$nom[1].'.jpg"
+				alt="'.$nom[0].' '.$nom[1].'" width = "250" height="300" />
 				';
 			}
 			//ingrédients
@@ -50,25 +56,7 @@
 				echo '<li>'.$etape.'</li>';
 			}
 			echo '</ul>';
-		} 
-		/*
-		if (isset($_GET['rubrique']))
-		{
-			$rubrique = $_GET['rubrique'];
-			foreach($Rubriques as $produit=>$infos) 
-				{ 
-					echo '
-					<tr>
-						<th align="left">'.$produit.'</th>
-						<td>'.$infos["Prix"].'</td>
-						<td>'.$infos["Unite"].'</td>
-						<td> 
-							<form> <input type="number" name="quantite['.$produit.']" min="1" max="20" /> </form>
-						</td>
-					</tr>';
-				}
 		}
-		*/
 	?>
 
 	</body>

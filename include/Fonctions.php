@@ -17,12 +17,14 @@
     function AfficherTousCocktails()
         {
             $i = 0;
+			echo '<ul id="listCat">';
             foreach($GLOBALS["Recettes"] as $recette=>$infos)
             {
-                 echo '<a href="index.php?p=Cocktail&indice='.$i.'">'.$infos['titre'].'</a>';
+                 echo '<li><a href="index.php?p=Cocktail&indice='.$i.'">'.$infos['titre'].'</a></li>';
                  echo '</br>';
                 $i++;
             }
+			echo '</ul>';
         }
 
     //ajoute dans une liste les cocktails contenant l'ingrédient en paramètre
@@ -84,13 +86,15 @@
     {
         if (isset($GLOBALS["Hierarchie"][$ingre]['sous-categorie'])!=FALSE)
         {
-            echo 'SOUS-CATÉGORIES :';
+            echo '<div id="cat">Sous-Catégories :</div>';
             echo '</br>';
             echo '</br>';
+			echo '<ul id="listCat">';
             foreach ($GLOBALS["Hierarchie"][$ingre]['sous-categorie'] as $sousens=>$indice)
             {
-                echo '<a href="index.php?p=RechercheCocktail&ingre='.$indice.'">'.$indice.'</a>   ';
+                echo '<li><a href="index.php?p=RechercheCocktail&ingre='.$indice.'">'.$indice.'</a></li>';
             }
+			echo '</ul>';
             echo '</br>';
         }
     }

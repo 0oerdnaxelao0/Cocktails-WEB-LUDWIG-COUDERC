@@ -8,42 +8,42 @@ body {
 	border:0px;}
 header {
 	background-color:black;
-	color:gold;
+	color:#FFDF00;
 	padding:0;
 	margin:0;
 	height:200px;}
 header h1 {
 	background-color:black;
-	color:gold;
+	color:#FFDF00;
 	padding:50px 0;
 	text-align:center;
 	margin:auto;
 	font-size:6em;}
 header a{
-	color:gold;
+	color:#FFDF00;
 	text-decoration:none;}
 nav {
 	text-align:center;
 	background-color:black;
-	color:gold;
+	color:#FFDF00;
 	float:top;
 	margin-top:10px;
 	clear:both;}
 nav ul {
+	font-family: 'Great Vibes', cursive;
 	padding:0px;
 	margin:0px;
 	font-size:2.5em;
 	display:block;}
 nav ul li {
-	display:inline;
-	/*padding:0;
-	margin:0;*/}
+	font-family: 'Great Vibes', cursive;
+	display:inline;}
 nav a {
 	text-decoration:none;
-	color:gold;
+	color:#FFDF00;
 	border-bottom:0;}
 nav a:hover {
-	background-color:gold;
+	background-color:#FFDF00;
 	color:black;
 	text-decoration:none;
 	border:0;
@@ -51,13 +51,15 @@ nav a:hover {
 	padding:10px;
 	padding-bottom:0px;
 	border-top:1px solid black;
-	border-bottom:1px solid gold;}
+	border-bottom:1px solid #FFDF00;}
 main {
 	margin:auto;
-	color:gold;
+	color:#FFDF00;
 	width:974px;}
 p {
+	color:#FAFAD2;
 	font-family:amaranth, sans-serif;
+	font-size:1em;
 }
 p a {
 	text-decoration: none;
@@ -89,8 +91,9 @@ h5 {
 main #nonGras li{
 	font-size:1em;
 	font-weight:400;}
-main li {
+ul li {
 	font-family:amaranth, sans-serif;
+	color:#EEE8AA;
 }
 hr {
 	width:284px;}
@@ -104,6 +107,9 @@ h4 a:hover {
 	text-decoration:none;
 	background-color:rgb(159, 85, 30);
 	color:white;}
+h5 {
+	font-size:2em;
+}
 fieldset {
 	border-radius:8px;
 }
@@ -149,6 +155,34 @@ input {
 	color:yellow;
 	font-style: italic;
 	font-size: 1.4em;
+}
+#cat {
+	font-size:2em;
+}
+#listCat a{
+	text-decoration:none;
+	font-family: 'Great Vibes', cursive;
+	color:#FAFAD2;
+	font-size: 1.4em;
+}
+#Ins {
+	color:#EEE8AA;
+}
+#Ins a {
+	text-decoration: none;
+	font-colr:blue;
+}
+#Ins a:hover {
+	background-color:#FFDF00;
+	color:black;
+	text-decoration:none;
+}
+#xdebug-error xe-notice {
+	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", "serif";
+}
+
+#PageCocktail img{
+	float:right;
 }
 .ok {
     }
