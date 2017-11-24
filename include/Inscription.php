@@ -7,21 +7,26 @@
 	<body>
 		<?php
 			include_once("connexionBDD.php");
-			$req = $bdd->prepare('SELECT pseudo FROM membres WHERE pseudo = :pseudo');
-			$req->execute(array(
-					'pseudo' => $_SESSION['pseudo'],));
-			$good = ($req->fetch()).sizeof();
-			$req->closeCursor();
 		
 			$ClassPseudo='ok';
 			$ClassPass='ok';
 			if(isset($_POST['submit']))
 			  {
 				//Pseudo
-				if(  (!isset($_POST['pseudo']) || $good != 0)
-				  )
+				if(  (!isset($_POST['pseudo'])))
 				  {
-					$ClassPseudo='error';
+					$req = $bdd->prepare('SELECT pseudo FROM membres WHERE pseudo = :pseudo');
+					$req->execute(array(
+						'pseudo' => $_POST['pseudo'],));
+					while($res = $req->fetch())
+					{
+						if ($res['pseudo'] == $_POST['pseudo'])
+						{
+							$ClassPseudo='error';
+							break;
+						}
+					}
+					$req->closeCursor();
 				  }
 				
 				//MDP
@@ -45,7 +50,7 @@
 				<?php 
 						if(isset($_POST['submit']))
 						{
-							if ($ClassPass == 'error')
+							if ($ClassPseudo == 'error')
 								echo 'Pseudo déja existant';
 							else if ($ClassPass == 'error')
 								echo 'Mot de passe incorect, veuillez réessayez';
@@ -60,6 +65,7 @@
 									'pseudo' => $_POST['pseudo'],
 									'pass' => $pass_hache,
 								));
+								include("Inscrit.php");
 							}
 						}
 				?>

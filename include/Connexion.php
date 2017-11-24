@@ -45,13 +45,14 @@
 							// Hachage du mot de passe
 							//$pass_hache = password_hash($_POST['pass'], PASSWORD_DEFAULT);
 							// Vérification des identifiants
-							$req = $bdd->prepare('SELECT id, pass FROM membres WHERE pseudo = :pseudo');
+							$req = $bdd->prepare('SELECT id, pseudo, pass FROM membres WHERE pseudo = :pseudo');
 							$req->execute(array(
 								'pseudo' => $_POST['pseudo'],));
 							while($resultat = $req->fetch())
 							{
 								$res = password_verify($_POST['pass'], $resultat['pass']);
 								$id = $resultat['id'];
+								$pseudo = $resultat['pseudo'];
 							}
 							$req->closeCursor();
 							if (!$res)
@@ -61,7 +62,7 @@
 							else
 							{
 								$_SESSION['id'] = $id;
-								$_SESSION['pseudo'] = $_POST['pseudo'];
+								$_SESSION['pseudo'] = $pseudo;
 								include("Perso.php");
 							}
 

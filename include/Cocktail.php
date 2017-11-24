@@ -56,8 +56,9 @@
 				echo '<li>'.$etape.'</li>';
 			}
 			echo '</ul>';
+			
+			echo '<a href="index.php?p=Favoris&amp;action=ajout&amp;c='.$Recettes[$_GET['indice']]['titre'].'">Ajouter au panier</a>';
 		}
 	?>
-
 	</body>
 </html>

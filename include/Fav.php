@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!doctype html>
 <html>
 	<head>
@@ -6,10 +7,10 @@
 	</head>
 	<body>
 		<?php 
-			if (!isset($_SESSION['pseudo']) || isset($_SESSION['id']))
-				include("NoConnect.html");
+			if (!isset($_SESSION['pseudo']) || !isset($_SESSION['id']))
+				include("Connexion.php");
 			else
-				include("panier.php");
+				include("Favoris.php");
 		?>
 	</body>
 </html>
