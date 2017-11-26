@@ -48,7 +48,6 @@
 						echo 'Adresse : <p>'.$resultat['adresse'].'</br>'.$resultat['cp'].' '.$resultat['ville'].'</p>';
 					}
 				}
-			echo $_SESSION['panier']['panier'];
 		?>
 		</br>
 		<a href="index.php?p=Modification"style="text-decoration: none; text-align: center">Modifier mes informations</a>

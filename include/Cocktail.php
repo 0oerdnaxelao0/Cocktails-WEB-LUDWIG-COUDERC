@@ -16,7 +16,7 @@
 		if (isset($_GET['indice'])) 
 		{ 
 			//titre
-			echo '<h1>'.$Recettes[$_GET['indice']]['titre'].'</h1>'; 
+			echo '<h1>'.$Recettes[$_GET['indice']]['titre'].'</h1>';
 		
 		
 			//image
@@ -57,7 +57,7 @@
 			}
 			echo '</ul>';
 			
-			echo '<a href="index.php?p=Favoris&amp;action=ajout&amp;c='.$Recettes[$_GET['indice']]['titre'].'">Ajouter au panier</a>';
+			echo '<a href="index.php?p=Fav&amp;action=ajout&amp;c='.$Recettes[$_GET['indice']]['titre'].'">Ajouter aux Favoris</a>';
 		}
 	?>
 	</body>

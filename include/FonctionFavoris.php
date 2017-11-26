@@ -1,59 +1,64 @@
 <?php 
-function creationPanier(){
-   if (!isset($_SESSION['panier'])){
-      $_SESSION['panier']['panier'] = array();
-      $_SESSION['panier']['verrou'] = false;
+function creationfav(){
+   if (!isset($_SESSION['fav'])){
+      $_SESSION['fav']['fav'] = array();
+      $_SESSION['fav']['verrou'] = false;
    }
    return true;
 }
 
 function ajouterCocktail($nomCocktail)
 {
-	if (creationPanier() && !isVerrouille())
+	if (creationfav() && !isVerrouille())
 	{
-		array_push($_SESSION['panier']['panier'],$nomCocktail);
+		array_push($_SESSION['fav']['fav'],$nomCocktail);
 	}
 	else
 		echo 'Un problème est survenu.';
 }
 
-function supprimerCocktail($nomCOcktail)
+function supprimerCocktail($nomCocktail)
 {
-	if (creationPanier() && !isVerrouille())
+	if (creationfav() && !isVerrouille())
 	{
-		if ($cle = array_search($nomCocktail, $_SESSION['panier']['panier']) !== false)
-			unset($_SESSION['panier']['panier'][$cle]);
+		if ($cle = array_search($nomCocktail, $_SESSION['fav']['fav']) !== false)
+			unset($_SESSION['fav']['fav'][$cle]);
 	}
 }
 
 function isVerrouille()
 {
-   if (isset($_SESSION['panier']['panier']) && $_SESSION['panier']['verrou'])
+   if (isset($_SESSION['fav']['fav']) && $_SESSION['fav']['verrou'])
    		return true;
    else
    		return false;
 }
 
-function supprimePanier()
+function supprimefav()
 {
-   	unset($_SESSION['panier']['panier']);
-	unset($_SESSION['panier']['verrou']);
+   	unset($_SESSION['fav']['fav']);
+	unset($_SESSION['fav']['verrou']);
 }
 
 function compterCocktails()
 {
-   if (isset($_SESSION['panier']['panier']))
-   		return count($_SESSION['panier']['panier']);
+   if (isset($_SESSION['fav']['fav']))
+   		return count($_SESSION['fav']['fav']);
    else
    		return 0;
 
+}
+
+function isInFav($nomCocktail)
+{
+	
 }
 ?>
 <!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>Fonctions Panier</title>
+<title>Fonctions fav</title>
 </head>
 
 <body>
