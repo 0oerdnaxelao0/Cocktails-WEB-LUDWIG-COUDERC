@@ -61,7 +61,7 @@
 						echo '</br>';
 						echo '</br>';
 					}
-					AfficherLiensSousCategorie($rech);
+					AfficherLiensSousCategorieCock($rech);
 					echo '</br>';
 					echo '</br>';
 					CreerListeTemp($rech,$ListeCockFils);

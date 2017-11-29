@@ -33,14 +33,14 @@
                 foreach($ListeFatherReverse as $element)
                 {
                     if($element !='Aliment')
-                    echo '<li><a href="index.php?p=RechercheCocktail&ingre='.$element.'">'.$element.' </a></li>';
+                    echo '<li><a href="index.php?p=RechercheIngredient&ingre='.$element.'">'.$element.' </a></li>';
                     
                 }
 				echo '</ul>';
                 echo '</br>';
                 echo '</br>';
             }
-            AfficherLiensSousCategorie($_GET['ingre']);
+            AfficherLiensSousCategorieIng($_GET['ingre']);
             echo '</br>';
             echo '</br>';
             CreerListeTemp($_GET['ingre'],$ListeCockFils);

@@ -184,6 +184,20 @@ input {
 #PageCocktail img{
 	float:right;
 }
+.button {
+	text-decoration: none;
+	color:black;
+	font-family: amaranth, sans-serif;
+	width: 75%;
+	margin-left: 42%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white; 
+    background-repeat: no-repeat;
+    padding: 12px 12px;
+}
 .ok {
     }
 .error

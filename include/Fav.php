@@ -1,6 +1,7 @@
 <?php 
 	session_start();
 	include_once("FonctionFavoris.php");
+	include_once("connexionBDD.php");
 	
 	$erreur = false;
 
@@ -22,15 +23,32 @@
 				Case "ajout":
 					{
 						ajouterCocktail($c);
+						if (isset($_SESSION['pseudo']) && isset($_SESSION['id']))
+						{
+							$req = $bdd->prepare('INSERT INTO favoris(id, valeur) VALUES(:id, :valeur)');
+							$req->execute(array(
+								'id' => $_SESSION['id'],
+								'valeur' => $c,
+							));
+							$req->closeCursor();
+						}
 						break;
 					}
 
 				Case "suppression":
 					{
 						supprimerCocktail($c);
+						if (isset($_SESSION['pseudo']) && isset($_SESSION['id']))
+						{
+							$req = $bdd->prepare('DELETE FROM favoris WHERE id = :id AND valeur = :valeur');
+							$req->execute(array(
+								'id' => $_SESSION['id'],
+								'valeur' => $c
+							));
+							$req->closeCursor();
+						}
 						break;
 					}
-
 				Default:
 						break;
 			}
@@ -45,30 +63,30 @@
 	</head>
 	<body>
 		<?php 
-			if (!isset($_SESSION['pseudo']) || !isset($_SESSION['id']))
-				include("Connexion.php");
-			else
-			{
+			//if (!isset($_SESSION['pseudo']) || !isset($_SESSION['id']))
+				//include("Connexion.php");
+			//else
+			//{
 				if (creationfav())
-			{
-				$nbCocktails = count($_SESSION['fav']['fav']);
-				if ($nbCocktails <= 0)
 				{
-					echo 'Vous n\'avez pas encore de favoris';
-				}
-				else
-				{
-					echo 'Favoris :';
-					echo '<ul>';
-					foreach($_SESSION['fav']['fav'] as $cocktail)
+					$nbCocktails = count($_SESSION['fav']['fav']);
+					if ($nbCocktails <= 0)
 					{
-						 echo '<li><a href="index.php?p=RechercheCocktail&ingre='.$cocktail.'">'.$cocktail.' </a>
-						 				<a href="index.php?p=Fav&amp;action=suppression&amp;c='.$cocktail.'">Supprimer</a></li>';
+						echo '<h3>Vous n\'avez pas encore de favoris</h3>';
 					}
-					echo '</ul>';
+					else
+					{
+						echo '<h2>Favoris :</h2>';
+						echo '<ul id="listCat">';
+						foreach($_SESSION['fav']['fav'] as $cocktail)
+						{
+							 echo '<li><a href="index.php?p=RechercheCocktail&ingre='.$cocktail.'">'.$cocktail.' </a>
+											 &emsp;&emsp;&emsp;&emsp;<a href="index.php?p=Fav&amp;action=suppression&amp;c='.$cocktail.'" style="text-decoration:underline;">Supprimer</a></li>';
+						}
+						echo '</ul>';
+					}
 				}
-			}
-			}
+			//}
 		?>
 	</body>
 </html>

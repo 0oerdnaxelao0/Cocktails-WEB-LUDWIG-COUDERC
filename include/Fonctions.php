@@ -82,7 +82,7 @@
     }
 
     //Utiliser dans la page de recherche de cocktail, affiche les sous catégories de l'ingrédient sélectionné sous forme de liens cliquables
-    function AfficherLiensSousCategorie($ingre)
+    function AfficherLiensSousCategorieCock($ingre)
     {
         if (isset($GLOBALS["Hierarchie"][$ingre]['sous-categorie'])!=FALSE)
         {
@@ -93,6 +93,23 @@
             foreach ($GLOBALS["Hierarchie"][$ingre]['sous-categorie'] as $sousens=>$indice)
             {
                 echo '<li><a href="index.php?p=RechercheCocktail&ingre='.$indice.'">'.$indice.'</a></li>';
+            }
+			echo '</ul>';
+            echo '</br>';
+        }
+    }
+
+	function AfficherLiensSousCategorieIng($ingre)
+    {
+        if (isset($GLOBALS["Hierarchie"][$ingre]['sous-categorie'])!=FALSE)
+        {
+            echo '<div id="cat">Sous-Catégories :</div>';
+            echo '</br>';
+            echo '</br>';
+			echo '<ul id="listCat">';
+            foreach ($GLOBALS["Hierarchie"][$ingre]['sous-categorie'] as $sousens=>$indice)
+            {
+                echo '<li><a href="index.php?p=RechercheIngredient&ingre='.$indice.'">'.$indice.'</a></li>';
             }
 			echo '</ul>';
             echo '</br>';

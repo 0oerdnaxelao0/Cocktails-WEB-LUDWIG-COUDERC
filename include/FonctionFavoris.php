@@ -11,7 +11,8 @@ function ajouterCocktail($nomCocktail)
 {
 	if (creationfav() && !isVerrouille())
 	{
-		array_push($_SESSION['fav']['fav'],$nomCocktail);
+		if (array_search($nomCocktail, $_SESSION['fav']['fav']) === false)
+			array_push($_SESSION['fav']['fav'],$nomCocktail);
 	}
 	else
 		echo 'Un problème est survenu.';
@@ -21,8 +22,21 @@ function supprimerCocktail($nomCocktail)
 {
 	if (creationfav() && !isVerrouille())
 	{
-		if ($cle = array_search($nomCocktail, $_SESSION['fav']['fav']) !== false)
-			unset($_SESSION['fav']['fav'][$cle]);
+		$tmp = array();
+		$tmp['fav'] = array();
+		$tmp['verrou'] = $_SESSION['fav']['verrou'];
+		
+		for($i = 0; $i < count($_SESSION['fav']['fav']); $i++)
+      	{
+			if ($_SESSION['fav']['fav'][$i] !== $nomCocktail)
+			{
+				array_push( $tmp['fav'],$_SESSION['fav']['fav'][$i]);
+				//if ($cle = array_search($nomCocktail, $_SESSION['fav']['fav']) !== false)
+				//unset($_SESSION['fav']['fav'][$cle]);
+			}
+		}
+		$_SESSION['fav'] = $tmp;
+		unset($tmp);
 	}
 }
 

@@ -25,15 +25,13 @@
 		
 			if (sizeof($nom) == 1)
 			{
-				echo '<img src = "images/'.$nom[0].'.jpg"
-				alt="'.$nom[0].'" width = "250" height=300" />
-				';
+				if(file_exists('images/'.$nom[0].'.jpg'))
+					echo '<img src = "images/'.$nom[0].'.jpg" width = "250" height=300" />';
 			}
 			else
 			{
-				echo '<img src ="images/'.$nom[0].'_'.$nom[1].'.jpg"
-				alt="'.$nom[0].' '.$nom[1].'" width = "250" height="300" />
-				';
+				if(file_exists('images/'.$nom[0].'_'.$nom[1].'.jpg'))
+					echo '<img src ="images/'.$nom[0].'_'.$nom[1].'.jpg" width = "250" height="300" />';
 			}
 			//ingrédients
 			echo '<h3> Ingrédients : </h3>';
@@ -56,8 +54,9 @@
 				echo '<li>'.$etape.'</li>';
 			}
 			echo '</ul>';
-			
-			echo '<a href="index.php?p=Fav&amp;action=ajout&amp;c='.$Recettes[$_GET['indice']]['titre'].'">Ajouter aux Favoris</a>';
+			;
+			echo'<br /><br /><br />';
+			echo '<a href="index.php?p=Fav&amp;action=ajout&amp;c='.$Recettes[$_GET['indice']]['titre'].'" class="button">Ajouter aux Favoris</a>';
 		}
 	?>
 	</body>

@@ -1,15 +1,22 @@
 <?php 
 	session_start();
-	// Suppression des variables de session et de la session
 
 	$_SESSION = array();
 
 	session_destroy();
 
-
-	// Suppression des cookies de connexion automatique
-	//setcookie('login', '');
-	//setcookie('pass_hache', '');
+	setcookie('pseudo', '', time() - 3600, '/');
+	setcookie('id', '', time() - 3600, '/');
+/*
+	if (isset($_COOKIE['id']))
+	{
+    	unset($_COOKIE['id']);
+	}
+	if (isset($_COOKIE['pseudo']))
+	{
+    	unset($_COOKIE['pseudo']);
+    	
+	}*/
 ?>
 <!doctype html>
 <html>
@@ -18,6 +25,6 @@
 <title>Deconnexion</title>
 </head>
 <body>
-	<p>Vous avez été déconnecté</p>
+	<h3>Vous avez été déconnecté</h3>
 </body>
 </html>

@@ -1,10 +1,10 @@
 <!doctype html>
-<html>
+<html lang="fr">
 	<head>
-		<meta charset="utf-8">		
-		<link rel="icon" href="images/icon.jpg" />
+		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="icon" href="images/icon.jpg"/>
 		<link rel="stylesheet" href="cssmain.css" type="text/css"/>
-		<link href="https://fonts.googleapis.com/css?family=Dancing+Script|Great+Vibes" rel="stylesheet"> 
+		<link href="https://fonts.googleapis.com/css?family=Dancing+Script|Great+Vibes" rel="stylesheet">
 		<title>Les Cocktails</title>
 	</head>
 	<body>
