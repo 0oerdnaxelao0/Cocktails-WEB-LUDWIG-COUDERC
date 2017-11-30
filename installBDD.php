@@ -1,5 +1,16 @@
 <?php 
-	include_once("connexionBDD.php");
+	try{
+		$dsn = "mysql:host=localhost";
+		$bdd = new PDO($dsn, 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+	}
+	catch (Exception $e)
+	{
+		die('Erreur : ' . $e->getMessage());
+	}
+
+	$table = "CREATE DATABASE IF NOT EXISTS `cocktails` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `cocktails`;";
+	
 	$membres="CREATE TABLE `membres` (
 		  `id` int(10) UNSIGNED NOT NULL,
 		  `pseudo` varchar(255) NOT NULL,
@@ -14,13 +25,50 @@
 		  `ville` varchar(255) DEFAULT NULL
 		  ) ENGINE=MyISAM DEFAULT CHARSET=latin1;";
 	$favoris="CREATE TABLE `favoris` (
-  			`id` int(10) NOT NULL,
-  			`valeur` varchar(100) NOT NULL
+ 			`id_row` int(10) NOT NULL,
+ 			`id` int(10) NOT NULL,
+ 			`valeur` varchar(100) NOT NULL
 			) ENGINE=MyISAM DEFAULT CHARSET=latin1;";
+	$membresP = "ALTER TABLE `membres`
+  			ADD PRIMARY KEY (`id`),
+			ADD UNIQUE KEY `pseudo` (`pseudo`);";
+	$favorisP = "ALTER TABLE `favoris`
+  			ADD PRIMARY KEY (`id_row`);";
+	$membresI = "ALTER TABLE `membres`
+  			MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;";
+	$favorisI = "ALTER TABLE `favoris`
+  			MODIFY `id_row` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;";
+	try
+	{
+		$bdd->exec($table);
+		echo "Table crée avec succès";
+	}
+	catch(PDOException $e)
+	{
+		echo "Table membres :<br />" . $e->getMessage();
+	}
 	try
 	{
 		$bdd->exec($membres);
 		echo "Table membres crée avec succès";
+	}
+	catch(PDOException $e)
+	{
+		echo "Table membres :<br />" . $e->getMessage();
+	}
+	try
+	{
+		$bdd->exec($membresP);
+		echo "Table membres modifiée avec succès";
+	}
+	catch(PDOException $e)
+	{
+		echo "Table membres :<br />" . $e->getMessage();
+	}
+	try
+	{
+		$bdd->exec($membresI);
+		echo "Table membres modifiée2 avec succès";
 	}
 	catch(PDOException $e)
 	{
@@ -34,5 +82,23 @@
 	catch(PDOException $e)
 	{
 		echo "Table favoris :<br />" . $e->getMessage();
+	}
+	try
+	{
+		$bdd->exec($favorisP);
+		echo "Table favoris modifiée avec succès";
+	}
+	catch(PDOException $e)
+	{
+		echo "Table membres :<br />" . $e->getMessage();
+	}
+	try
+	{
+		$bdd->exec($favorisI);
+		echo "Table favoris modifiée2 avec succès";
+	}
+	catch(PDOException $e)
+	{
+		echo "Table membres :<br />" . $e->getMessage();
 	}
 ?>

@@ -35,7 +35,7 @@
 				<p>Mot de Passe (8 caractères min) :</p>
 				<input id="Obligatoire" type="password" name="pass" required="required" value="<?php if(isset($_POST['pass']))  echo $_POST['pass']; ?>"/>
 				<p>Rester Connecté</p>
-				<input type="checkbox" name="stay" checked="<?php if(isset($_POST['pass']))  echo 'checked'?>"/>
+				<input type="checkbox" name="stay" checked="<?php if(isset($_POST['stay']))  echo 'checked'?>"/>
 				<input id="Val" type="submit" name="submit" value="Valider" />
 			</fieldset>
 		</form>
@@ -76,8 +76,11 @@
 									ajouterCocktail($res['valeur']);
 								}
 								$req->closeCursor();
-								setcookie('id', $id);
-								setcookie('pseudo', $pseudo);
+								if(isset($_POST['stay']))
+								{
+									setcookie('id', $id, time() + 84600, '/');
+									setcookie('pseudo', $pseudo, time() + 84600, '/');
+								}
 								include("Perso.php");
 							}
 

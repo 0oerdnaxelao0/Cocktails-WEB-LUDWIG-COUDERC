@@ -4,19 +4,9 @@
 	$_SESSION = array();
 
 	session_destroy();
+	setcookie('id', '', -1, '/');
+	setcookie('pseudo', '', -1, '/');
 
-	setcookie('pseudo', '', time() - 3600, '/');
-	setcookie('id', '', time() - 3600, '/');
-/*
-	if (isset($_COOKIE['id']))
-	{
-    	unset($_COOKIE['id']);
-	}
-	if (isset($_COOKIE['pseudo']))
-	{
-    	unset($_COOKIE['pseudo']);
-    	
-	}*/
 ?>
 <!doctype html>
 <html>
