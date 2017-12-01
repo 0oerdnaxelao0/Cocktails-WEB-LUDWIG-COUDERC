@@ -81,7 +81,7 @@
 									setcookie('id', $id, time() + 84600, '/');
 									setcookie('pseudo', $pseudo, time() + 84600, '/');
 								}
-								include("Perso.php");
+								header("Refresh:0");
 							}
 
 						}

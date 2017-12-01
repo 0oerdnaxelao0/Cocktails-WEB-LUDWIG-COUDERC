@@ -31,7 +31,7 @@
 				  }
 				
 				//MDP
-				if(isset($_POST['pass']) && (!preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)#',$_POST['pass'])))
+				if(isset($_POST['pass']) && (!preg_match('/^(?=.*[A-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@])\S{8,}$/',$_POST['pass'])))
 				{
 					$ClassPass='error';
 				}

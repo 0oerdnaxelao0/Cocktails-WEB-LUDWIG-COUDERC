@@ -13,9 +13,9 @@
 			if(isset($_POST['submit']))
 			  {
 				//Pseudo
-				if(  (!isset($_POST['pseudo'])))
+				if(  (isset($_POST['pseudo'])))
 				  {
-					$req = $bdd->prepare('SELECT pseudo FROM membres WHERE pseudo = :pseudo');
+					$req = $bdd->prepare('SELECT pseudo FROM membres');
 					$req->execute(array(
 						'pseudo' => $_POST['pseudo'],));
 					while($res = $req->fetch())
@@ -30,8 +30,8 @@
 				  }
 				
 				//MDP
-				if ( (!isset($_POST['pass']))
-				 ||(!preg_match("#^[a-z0-9._-]{8,}$#",$_POST['pass'])))
+				if ( (isset($_POST['pass']))
+				 && (!preg_match("/^(?=.*[A-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@])\S{8,}$/",$_POST['pass'])))
 				{
 					$ClassPass='error';
 				}
@@ -65,7 +65,7 @@
 									'pseudo' => $_POST['pseudo'],
 									'pass' => $pass_hache,
 								));
-								include("Inscrit.php");
+								header("Refresh:0; url=index.php?p=Inscrit");
 							}
 						}
 				?>
