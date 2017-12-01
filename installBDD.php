@@ -1,4 +1,4 @@
-<?php 
+<?php
 	try{
 		$dsn = "mysql:host=localhost";
 		$bdd = new PDO($dsn, 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
@@ -10,7 +10,7 @@
 
 	$table = "CREATE DATABASE IF NOT EXISTS `cocktails` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `cocktails`;";
-	
+
 	$membres="CREATE TABLE `membres` (
 		  `id` int(10) UNSIGNED NOT NULL,
 		  `pseudo` varchar(255) NOT NULL,
@@ -32,6 +32,8 @@ USE `cocktails`;";
 	$membresP = "ALTER TABLE `membres`
   			ADD PRIMARY KEY (`id`),
 			ADD UNIQUE KEY `pseudo` (`pseudo`);";
+	$user = "INSERT INTO `membres` (`id`, `pseudo`, `pass`, `nom`, `prenom`, `sexe`, `email`, `date_naissance`, `adresse`, `cp`, `ville`) VALUES
+	(16, 'nauer123', '$2y$10$.GxOpiibRvOraxeBKeyMq.ZjCvjjaGo5e7ulLRfeRvYUDgb2LrjWy', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);";
 	$favorisP = "ALTER TABLE `favoris`
   			ADD PRIMARY KEY (`id_row`);";
 	$membresI = "ALTER TABLE `membres`
@@ -68,6 +70,15 @@ USE `cocktails`;";
 	try
 	{
 		$bdd->exec($membresI);
+		echo "Table membres modifiée2 avec succès";
+	}
+	catch(PDOException $e)
+	{
+		echo "Table membres :<br />" . $e->getMessage();
+	}
+	try
+	{
+		$bdd->exec($user);
 		echo "Table membres modifiée2 avec succès";
 	}
 	catch(PDOException $e)
